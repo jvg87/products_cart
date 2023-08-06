@@ -11,6 +11,9 @@ export function Routes(){
       <Stack.Screen
         name="Home"
         component={Home}
+        options={{
+          headerShown: false
+        }}
       />
       <Stack.Screen
         name="Cart"
