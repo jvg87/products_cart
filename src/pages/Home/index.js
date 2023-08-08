@@ -8,7 +8,7 @@ import { CartContext } from '../../contexts/CartContext';
 import Product from '../../components/Products';
 
 export default function Home() {
-  const { cart } = useContext(CartContext);
+  const { cart, addItemCart } = useContext(CartContext);
   const navigation = useNavigation();
 
   const [products, setProducts] = useState([
@@ -64,6 +64,10 @@ export default function Home() {
     },
   ]);
 
+  function handleAddCart(item) {
+    addItemCart(item);
+  }
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.content}>
@@ -81,7 +85,7 @@ export default function Home() {
         style={styles.list}
         data={products}
         keyExtractor={(item) => String(item.id)}
-        renderItem={({item}) => <Product data={item}/>}
+        renderItem={({item}) => <Product data={item} addToCart={() => handleAddCart(item)}/>}
       />
     </SafeAreaView>
   )
