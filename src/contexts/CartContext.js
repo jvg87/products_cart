@@ -28,8 +28,28 @@ function CartProvider({ children }){
     setCart(products => [...products, data])
   }
 
+  function removeItemCard(product) {
+    const indexItem = cart.findIndex(item => item.id === product.id);
+
+    if (cart[indexItem]?.amount > 1){
+      let cartList = cart;
+      
+      cartList[indexItem].amount -= 1;
+
+      cartList[indexItem].total = cartList[indexItem].total - cartList[indexItem].price;
+
+      setCart(cartList);
+
+      return;
+    }
+
+    const removeItem = cart.filter(item => item.id !== product.id);
+    setCart(removeItem);
+
+  }
+
   return (
-    <CartContext.Provider value={{cart, addItemCart}}>
+    <CartContext.Provider value={{cart, addItemCart, removeItemCard}}>
       {children}
     </CartContext.Provider>
   )

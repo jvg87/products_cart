@@ -18,6 +18,9 @@ export function Routes(){
       <Stack.Screen
         name="Cart"
         component={Cart}
+        options={{
+          headerTitle: 'Meu carrinho'
+        }}
       />
     </Stack.Navigator>
   )
